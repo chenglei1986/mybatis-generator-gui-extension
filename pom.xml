@@ -5,19 +5,18 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.spawpaw.mybatis.generator</groupId>
     <artifactId>gui-extension-for-mbg</artifactId>
-    <version>v2.5.6</version>
+    <version>3.0.0</version>
     <name>MBG-GUI-EXTENSION</name>
 
     <packaging>jar</packaging>
-
-    <url>http://maven.apache.org</url>
 
     <properties>
         <exec.mainClass>com.spawpaw.mybatis.generator.gui.GeneratorGuiRunner</exec.mainClass>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <!--java version,8 or 9 (you must install jdk 1.8u60+)-->
-        <java.language.level>8</java.language.level>
+        <java.language.level>17</java.language.level>
+        <javafx.version>17.0.2</javafx.version>
+
         <snake-yaml.version>2.0</snake-yaml.version>
         <javaparser-core.version>3.6.0</javaparser-core.version>
         <mybatis-generator-plugin.version>1.3.10</mybatis-generator-plugin.version>
@@ -31,109 +30,110 @@
         <hibernate-jpa-2.1-api.version>1.0.0.Final</hibernate-jpa-2.1-api.version>
         <hibernate-validator.version>7.0.0.Final</hibernate-validator.version>
         <mysql-connector-java.version>8.0.28</mysql-connector-java.version>
-        <ojdbc6.version>11.2.0.4</ojdbc6.version>
         <postgresql.version>42.7.2</postgresql.version>
         <mssql-jdbc.version>6.2.2.jre8</mssql-jdbc.version>
     </properties>
 
     <repositories>
-        <!--默认使用阿里仓库-->
         <repository>
             <id>maven-ali</id>
             <url>https://maven.aliyun.com/nexus/content/groups/public//</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-                <updatePolicy>always</updatePolicy>
-                <checksumPolicy>fail</checksumPolicy>
-            </snapshots>
-        </repository>
-        <repository>
-            <!--maven中央仓库-->
-            <id>mvnrepository</id>
-            <name>mvnrepository</name>
-            <url>https://www.mvnrepository.com/</url>
-            <layout>default</layout>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
+            <releases><enabled>true</enabled></releases>
+            <snapshots><enabled>true</enabled><updatePolicy>always</updatePolicy><checksumPolicy>fail</checksumPolicy></snapshots>
         </repository>
     </repositories>
 
     <dependencies>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>${javafx.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-fxml</artifactId>
+            <version>${javafx.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-graphics</artifactId>
+            <version>${javafx.version}</version>
+            <classifier>win</classifier>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-base</artifactId>
+            <version>${javafx.version}</version>
+        </dependency>
 
-        <!--yml序列化/反序列化工具-->
-        <!-- https://mvnrepository.com/artifact/org.yaml/snakeyaml -->
+        <dependency>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+            <version>2.3.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.jaxb</groupId>
+            <artifactId>jaxb-runtime</artifactId>
+            <version>2.3.1</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.activation</groupId>
+            <artifactId>activation</artifactId>
+            <version>1.1.1</version>
+        </dependency>
+
         <dependency>
             <groupId>org.yaml</groupId>
             <artifactId>snakeyaml</artifactId>
             <version>${snake-yaml.version}</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/com.github.javaparser/javaparser-core -->
         <dependency>
             <groupId>com.github.javaparser</groupId>
             <artifactId>javaparser-core</artifactId>
             <version>${javaparser-core.version}</version>
         </dependency>
-
         <dependency>
             <groupId>com.itfsw</groupId>
             <artifactId>mybatis-generator-plugin</artifactId>
             <version>${mybatis-generator-plugin.version}</version>
         </dependency>
-
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
             <version>${logback-classic.version}</version>
         </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.apache.velocity/velocity -->
         <dependency>
             <groupId>org.apache.velocity</groupId>
             <artifactId>velocity</artifactId>
             <version>${velocity.version}</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.hildan.fxgson/fx-gson -->
         <dependency>
             <groupId>org.hildan.fxgson</groupId>
             <artifactId>fx-gson</artifactId>
             <version>${fx-gson.version}</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
             <version>${gson.version}</version>
         </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.mybatis.generator/mybatis-generator-core -->
         <dependency>
             <groupId>org.mybatis.generator</groupId>
             <artifactId>mybatis-generator-core</artifactId>
             <version>${mybatis-generator-core.version}</version>
         </dependency>
-
-        <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
             <version>${guava.version}</version>
         </dependency>
-        <!--=================================================================================================== 测试 -->
-        <!-- junit -->
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.13.1</version>
             <scope>test</scope>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
         <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis</artifactId>
@@ -152,94 +152,150 @@
             <version>${hibernate-validator.version}</version>
             <scope>test</scope>
         </dependency>
-        <!--=====================================================================================================DAO -->
 
-        <!-- mysql数据库驱动 -->
-        <!--<dependency>-->
-        <!--<groupId>mysql</groupId>-->
-        <!--<artifactId>mysql-connector-java</artifactId>-->
-        <!--<version>5.1.45</version>-->
-        <!--</dependency>-->
-
-        <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>${mysql-connector-java.version}</version>
         </dependency>
-
-        <!--使用第三方托管的ojdbc（辣鸡oracle...-->
-        <!-- https://mvnrepository.com/artifact/com.oracle.database.jdbc/ojdbc11 -->
         <dependency>
             <groupId>com.oracle.database.jdbc</groupId>
             <artifactId>ojdbc11</artifactId>
             <version>23.6.0.24.10</version>
         </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <version>${postgresql.version}</version>
         </dependency>
-
-        <!-- https://mvnrepository.com/artifact/com.microsoft.sqlserver/mssql-jdbc -->
         <dependency>
             <groupId>com.microsoft.sqlserver</groupId>
             <artifactId>mssql-jdbc</artifactId>
             <version>${mssql-jdbc.version}</version>
         </dependency>
-
-
     </dependencies>
+
     <build>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.7.0</version>
+                <version>3.11.0</version>
                 <configuration>
-                    <source>1.${java.language.level}</source>
-                    <target>1.${java.language.level}</target>
+                    <source>${java.language.level}</source>
+                    <target>${java.language.level}</target>
                 </configuration>
             </plugin>
 
-            <!--fat jar-->
             <plugin>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <configuration>
-                    <descriptorRefs>
-                        <descriptorRef>jar-with-dependencies</descriptorRef>
-                    </descriptorRefs>
-                    <archive>
-                        <manifest>
-                            <mainClass>${exec.mainClass}</mainClass>
-                        </manifest>
-                    </archive>
-                </configuration>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.5.1</version>
                 <executions>
                     <execution>
-                        <id>make-assembly</id>
                         <phase>package</phase>
                         <goals>
-                            <goal>single</goal>
+                            <goal>shade</goal>
                         </goals>
+                        <configuration>
+                            <filters>
+                                <filter>
+                                    <artifact>*:*</artifact>
+                                    <excludes>
+                                        <exclude>META-INF/*.SF</exclude>
+                                        <exclude>META-INF/*.DSA</exclude>
+                                        <exclude>META-INF/*.RSA</exclude>
+                                    </excludes>
+                                </filter>
+                            </filters>
+                            <transformers>
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <mainClass>${exec.mainClass}</mainClass>
+                                </transformer>
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
+                            </transformers>
+                            <shadedArtifactAttached>true</shadedArtifactAttached>
+                            <shadedClassifierName>shaded</shadedClassifierName>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
-
-            <!--native app for windows-->
-            <plugin>
-                <groupId>com.zenjava</groupId>
-                <artifactId>javafx-maven-plugin</artifactId>
-                <version>8.8.3</version>
-                <configuration>
-                    <mainClass>${exec.mainClass}</mainClass>
-                    <vendor>spawpaw@hotmail.com</vendor>
-                    <verbose>false</verbose>
-                    <jfxMainAppJarName>${project.artifactId}.jar</jfxMainAppJarName>
-                </configuration>
-            </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>win-exe</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <version>3.1.0</version>
+                        <executions>
+                            <execution>
+                                <id>prepare-jpackage-input</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                                <configuration>
+                                    <target>
+                                        <mkdir dir="${project.build.directory}/jpackage-input"/>
+                                        <copy file="${project.build.directory}/${project.artifactId}-${project.version}-shaded.jar"
+                                              tofile="${project.build.directory}/jpackage-input/${project.artifactId}-${project.version}-shaded.jar"/>
+                                    </target>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>exec-maven-plugin</artifactId>
+                        <version>3.1.0</version>
+                        <executions>
+                            <execution>
+                                <id>jpackage-exe</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>exec</goal>
+                                </goals>
+                                <configuration>
+                                    <executable>${java.home}/bin/jpackage</executable>
+                                    <arguments>
+                                        <argument>--type</argument>
+                                        <argument>app-image</argument>
+
+                                        <argument>--dest</argument>
+                                        <argument>${project.build.directory}/dist</argument>
+
+                                        <argument>--name</argument>
+                                        <argument>MyBatisGeneratorGUI</argument>
+
+                                        <argument>--app-version</argument>
+                                        <argument>1.0.0</argument>
+
+                                        <argument>--input</argument>
+                                        <argument>${project.build.directory}/jpackage-input</argument>
+
+                                        <argument>--main-jar</argument>
+                                        <argument>${project.artifactId}-${project.version}-shaded.jar</argument>
+
+                                        <argument>--main-class</argument>
+                                        <argument>${exec.mainClass}</argument>
+
+                                        <argument>--add-modules</argument>
+                                        <argument>java.se,jdk.unsupported,jdk.crypto.ec</argument>
+
+                                        <argument>--java-options</argument>
+                                        <argument>-Dfile.encoding=GBK</argument>
+                                    </arguments>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>
