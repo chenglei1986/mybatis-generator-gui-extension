@@ -14,7 +14,7 @@
 我们在项目中提供了开箱即用的绿色版，无需繁琐的安装步骤。
 
 1.  下载[**`MyBatisGeneratorGUI.7z`**](./release/MyBatisGeneratorGUI.7z)并解压。
-3.  进入解压后的文件夹，双击 **`MyBatisGeneratorGUI.exe`** 即可启动。
+2.  进入解压后的文件夹，双击 **`MyBatisGeneratorGUI.exe`** 即可启动。
 
 > **注意**：该版本已内置必要的运行环境，支持 Windows 系统。
 
